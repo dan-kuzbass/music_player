@@ -6,13 +6,21 @@ import {
   Dimensions,
   StyleSheet
 } from "react-native";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers/index';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Content />
-      <Player />   
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <Content />
+        <Player />
+      </View>
+    </Provider>
   );
 };
 

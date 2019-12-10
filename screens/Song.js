@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const Song = props => {
   return (
-    <TouchableOpacity onPress={() => { }} key={props.id}>
+    <TouchableOpacity onPress={() => { }}>
       <View style={styles.card}>
         <View style={styles.description}>
           <View style={styles.firstRow}>
