@@ -13,8 +13,8 @@ const Song = props => {
       <View style={styles.card}>
         <View style={styles.description}>
           <View style={styles.firstRow}>
-            <Text style={styles.username}>{props.song.author}</Text>
-            <Text style={styles.username}>{props.song.duration}</Text>
+            <Text style={styles.track}>{props.song.author}</Text>
+            <Text style={styles.track}>{props.song.duration}</Text>
           </View>
           <Text style={styles.title}>{props.song.title}</Text>
           <View style={styles.countContainer}>
@@ -27,10 +27,6 @@ const Song = props => {
 }
 
 const styles = StyleSheet.create({
-  progressbar: {
-    marginTop: 10,
-    alignItems: 'center'
-  },
   card: {
     flexDirection: 'row',
     padding: 10,
@@ -38,11 +34,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'gray'
-  },
-  avatar: {
-    padding: 10,
-    width: 50,
-    height: 50
   },
   description: {
     flex: 1,
@@ -53,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  username: {
+  track: {
     fontSize: 10
   },
   title: {
@@ -64,9 +55,6 @@ const styles = StyleSheet.create({
   },
   countContainer: {
     flexDirection: 'row'
-  },
-  count: {
-    fontSize: 10
   }
 })
 
