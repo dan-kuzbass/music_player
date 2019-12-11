@@ -7,6 +7,9 @@ import {
 } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import AntDesignIcon from "react-native-vector-icons/AntDesign";
+import { connect } from "react-redux";
+import { getSongsOfPlaylist } from "../actions/songs";
+import SoundPlayer from "react-native-sound-player";
 
 const Player = props => {
   return (
@@ -18,19 +21,28 @@ const Player = props => {
               name="doubleleft"
               size={25}
               color="#FFF"
-              onPress={() => {}}
+              onPress={() => {
+                SoundPlayer.playUrl('https://cdns-preview-d.dzcdn.net/stream/c-dcc03940c7edb13b42ee6247f844a2da-3.mp3')
+              }}
+              style={{marginLeft: 10}}
             />
             <MaterialIcon
               name="pause"
               size={25}
               color="#FFF"
-              onPress={() => {}}
+              onPress={() => {
+                SoundPlayer.play()
+              }}
+              style={{marginLeft: 10}}
             />
             <AntDesignIcon
               name="doubleright"
               size={25}
               color="#FFF"
-              onPress={() => {}}
+              onPress={() => {
+                SoundPlayer.pause()
+              }}
+              style={{marginLeft: 10}}
             />
           </View>
         </View>
@@ -73,4 +85,12 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Player
+const mapStateToProps = state => ({
+  songs: state.songs.songs,
+  loading: state.songs.loading,
+  error: state.songs.error
+})
+
+export default connect(mapStateToProps, {
+  getSongsOfPlaylist
+})(Player);

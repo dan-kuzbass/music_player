@@ -6,10 +6,13 @@ import {
   TouchableOpacity
 } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SoundPlayer from "react-native-sound-player";
 
 const Song = props => {
   return (
-    <TouchableOpacity onPress={() => { }}>
+    <TouchableOpacity onPress={() => {
+      SoundPlayer.playUrl(props.song.preview)
+    }}>
       <View style={styles.card}>
         <View style={styles.description}>
           <View style={styles.firstRow}>
@@ -18,7 +21,10 @@ const Song = props => {
           </View>
           <Text style={styles.title}>{props.song.title}</Text>
           <View style={styles.countContainer}>
-            <Icon name='play-arrow' size={25} />
+            <Icon 
+              name='play-arrow' 
+              size={25} 
+            />
           </View>
         </View>
       </View>
