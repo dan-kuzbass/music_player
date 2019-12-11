@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Song = props => {
   return (
@@ -14,7 +14,7 @@ const Song = props => {
         <View style={styles.description}>
           <View style={styles.firstRow}>
             <Text style={styles.track}>{props.song.author}</Text>
-            <Text style={styles.track}>{props.song.duration}</Text>
+            <Text style={styles.track}>0:30</Text>
           </View>
           <Text style={styles.title}>{props.song.title}</Text>
           <View style={styles.countContainer}>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Song
+export default Song;
