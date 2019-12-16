@@ -35,7 +35,7 @@ const Player = props => {
               size={25}
               color="#FFF"
               onPress={onPressPrevious}
-              style={{marginLeft: 9}}
+              style={{marginLeft: 6}}
             />
             {!props.playing && <MaterialIcon
               name="play-arrow"
@@ -45,7 +45,7 @@ const Player = props => {
                 props.setPlayerState(!props.playing)
                 SoundPlayer.play()
               }}
-              style={{marginLeft: 9}}
+              style={{marginLeft: 6}}
             />}
             {props.playing && <MaterialIcon
               name="pause"
@@ -55,14 +55,14 @@ const Player = props => {
                 props.setPlayerState(!props.playing)
                 SoundPlayer.pause()
               }}
-              style={{marginLeft: 9}}
+              style={{marginLeft: 6}}
             />}
             <AntDesignIcon
               name="doubleright"
               size={25}
               color="#FFF"
               onPress={onPressNext}
-              style={{marginLeft: 9}}
+              style={{marginLeft: 6}}
             />
           </View>
         </View>
