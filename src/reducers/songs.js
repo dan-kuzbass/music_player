@@ -1,7 +1,8 @@
 import {
   GET_SONGS,
   GET_SONGS_SUCCEED,
-  GET_SONGS_FAILED
+  GET_SONGS_FAILED,
+  SET_CURRENT_SONG_ID
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   ],
   loading: false,
   error: false,
+  currentSongID: -1,
   songs: []
 }
 
@@ -35,6 +37,11 @@ export default function songs(state = initialState, action) {
         loading: false,
         error: true
       };
+    case SET_CURRENT_SONG_ID:
+      return {
+        ...state,
+        currentSongID: action.currentSongID
+      }
     default:
       return state
   }

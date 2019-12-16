@@ -8,10 +8,23 @@ import {
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import AntDesignIcon from "react-native-vector-icons/AntDesign";
 import { connect } from "react-redux";
-import { getSongsOfPlaylist } from "../actions/songs";
 import SoundPlayer from "react-native-sound-player";
+import { setCurrentSongID } from "../actions/songs";
+import { setPlayerState } from "../actions/player";
 
 const Player = props => {
+  const onPressPrevious = () => {
+    const newCurrentID = props.currentSongID == 0 ? props.songs.length - 1 : props.currentSongID - 1;
+    props.setCurrentSongID(newCurrentID);
+    SoundPlayer.playUrl(props.songs[newCurrentID].preview);
+    props.setPlayerState(true);
+  };
+  const onPressNext = () => {
+    const newCurrentID = props.currentSongID == props.songs.length - 1 ? 0 : props.currentSongID + 1;
+    props.setCurrentSongID(newCurrentID)
+    SoundPlayer.playUrl(props.songs[newCurrentID].preview);
+    props.setPlayerState(true);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -21,33 +34,42 @@ const Player = props => {
               name="doubleleft"
               size={25}
               color="#FFF"
-              onPress={() => {
-                SoundPlayer.playUrl('https://cdns-preview-d.dzcdn.net/stream/c-dcc03940c7edb13b42ee6247f844a2da-3.mp3')
-              }}
-              style={{marginLeft: 10}}
+              onPress={onPressPrevious}
+              style={{marginLeft: 9}}
             />
-            <MaterialIcon
+            {!props.playing && <MaterialIcon
+              name="play-arrow"
+              size={25}
+              color="#FFF"
+              onPress={() => {
+                props.setPlayerState(!props.playing)
+                SoundPlayer.play()
+              }}
+              style={{marginLeft: 9}}
+            />}
+            {props.playing && <MaterialIcon
               name="pause"
               size={25}
               color="#FFF"
               onPress={() => {
-                SoundPlayer.play()
+                props.setPlayerState(!props.playing)
+                SoundPlayer.pause()
               }}
-              style={{marginLeft: 10}}
-            />
+              style={{marginLeft: 9}}
+            />}
             <AntDesignIcon
               name="doubleright"
               size={25}
               color="#FFF"
-              onPress={() => {
-                SoundPlayer.pause()
-              }}
-              style={{marginLeft: 10}}
+              onPress={onPressNext}
+              style={{marginLeft: 9}}
             />
           </View>
         </View>
         <View style={styles.description}>
-          <Text style={styles.title}>SoundTitle</Text>
+          <Text style={styles.title}>
+            {props.songs[props.currentSongID] ? props.songs[props.currentSongID].title : "Select song..."}
+          </Text>
         </View>
       </View>
     </View>
@@ -81,16 +103,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     color: '#fff',
-    fontSize: 22
+    fontSize: 17,
+    marginLeft: 30,
+    marginTop: 10
   }
 })
 
 const mapStateToProps = state => ({
+  currentSongID: state.songs.currentSongID,
   songs: state.songs.songs,
-  loading: state.songs.loading,
-  error: state.songs.error
+  playing: state.player.playing
 })
 
 export default connect(mapStateToProps, {
-  getSongsOfPlaylist
+  setCurrentSongID,
+  setPlayerState
 })(Player);

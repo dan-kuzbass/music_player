@@ -5,10 +5,6 @@ export const getSongsOfPlaylist = (playlistID) => async (dispatch) => {
   dispatch({
     type: types.GET_SONGS
   });
-   // const result = await axios(
-    //   'https://api.deezer.com/playlist/908622995',
-    // );
-    // setData(JSON.stringify(result.data.tracks.data));
   try {
     const response = await axios(
       `https://api.deezer.com/playlist/${playlistID}`,
@@ -23,3 +19,10 @@ export const getSongsOfPlaylist = (playlistID) => async (dispatch) => {
     });
   }
 };
+
+export const setCurrentSongID = (currentSongID) => async (dispatch) => {
+  dispatch({
+    type: types.SET_CURRENT_SONG_ID,
+    currentSongID
+  });
+}

@@ -1,3 +1,6 @@
 export const GET_SONGS = "GET_SONGS";
 export const GET_SONGS_SUCCEED = "GET_SONGS_SUCCEED";
 export const GET_SONGS_FAILED = "GET_SONGS_FAILED";
+export const SET_CURRENT_SONG_ID = "SET_CURRENT_SONG_ID";
+
+export const SET_PLAYING = "SET_PLAYING";

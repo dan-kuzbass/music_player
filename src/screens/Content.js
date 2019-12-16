@@ -34,7 +34,7 @@ const Content = props => {
     return (
       <ScrollView style={styles.container}>
         {props.songs.map((song, id) => {
-          return <Song song={song} key={id} />
+          return <Song song={song} key={id} id={id} />
         })}
       </ScrollView>
     )
