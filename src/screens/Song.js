@@ -19,20 +19,14 @@ const Song = props => {
   }
   return (
     <TouchableOpacity onPress={() => {
-      if (!props.playing || props.id !== props.currentSongID) {
-        props.setCurrentSongID(props.id);
-        SoundPlayer.playUrl(props.song.preview);
-        props.setPlayerState(true);
-        SoundPlayer.addEventListener("FinishedPlaying", () => {
-          props.setPlayerState(false);
-        })
-      }
-      else {
-        setPause(true);
+      props.setCurrentSongID(props.id);
+      SoundPlayer.playUrl(props.song.preview);
+      props.setPlayerState(true);
+      SoundPlayer.addEventListener("FinishedPlaying", () => {
         props.setPlayerState(false);
-      }
+      })
     }} disabled={props.id === props.currentSongID}>
-      <View style={{...styles.card, backgroundColor: props.currentSongID === props.id ? "#a0a0a0" : "white"}}>
+      <View style={{ ...styles.card, backgroundColor: props.currentSongID === props.id ? "#a0a0a0" : "white" }}>
         <View style={styles.description}>
           <View style={styles.firstRow}>
             <Text style={styles.track}>{props.song.artist.name}</Text>
